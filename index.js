@@ -87,20 +87,22 @@ function averageBal(people){
     var avgBalance = 0;
     
     _.each(people, function(cust, i, people){    
-        oldMoney.push(cust["balance"].slice(1, cust["balance"].length).replace(/,/g, ""));});  
+        oldMoney.push(cust["balance"].replace("$", "").replace(",", ""));});   
         
     _.each(oldMoney, function(amt, i, coll){newMoney.push(Number.parseFloat(amt));});
     _.each(newMoney, function(val, i, newMoney){ total += val; avgBalance = total/(i+1)});
  
- return "The average balance is " + avgBalance + " dollars.";
+     
+ 
+ return "The average balance is " + Math.round(avgBalance * 100) / 100 + " dollars.";
 }
 console.log(averageBal(customers));
 
 
 //6. Find how many customers' names begin with an arbitrary letter. 
-//Write a function to answer this question, then log an answer.
+//Write a function to answer this qu    estion, then log an answer.
 
- var searchCustLetter = "S";
+ var searchCustLetter = "D";
  var custNameBeginsWith = _.reduce(customers, function(prevName, currentName, i) {
       
     if(customers[i]['name'].charAt(0) === searchCustLetter) {return prevName + 1;}
@@ -199,7 +201,7 @@ console.log(letsStalk(customers, "Shelly Walton"));
     
     
     _.each(theTags, function(tag, i, theTags){
-        _.each(noDup, function(sDup, j, noDup){
+        _.each(noDup, function(noDup, j, noDup){
           if (theTags[i] === noDup[j]){
               occurance[noDup[j]] += 1;    
           }  
